@@ -10,13 +10,13 @@
 <img width="682" height="322" alt="image" src="https://github.com/user-attachments/assets/65d3f6f6-6b66-4d9b-a446-72d1bc692f10" />
 |==========================================|
 
-## Requerimientos
+## Requerimientos 
 
-RF01: El sistema deberá permitir la visualización de los nombres y numeros de estudiante de los autores
+RF01: El sistema deberá permitir la visualización de los nombres y numeros de estudiante de los autores 
 
-RF02: El sistema deberá permitir la creación de diseñadores, con nombre **único**, dirección y mail
+RF02: El sistema deberá permitir la creación de diseñadores, con nombre **único**, dirección y mail 
 
-RF03: El sistema deberá permitir la creación de fichas, con nombre y color (R rojo, A azúl, B blanco, N negro, V verde, G magenta, C celeste)
+RF03: El sistema deberá permitir la creación de fichas, con nombre y color (R rojo, A azúl, B blanco, N negro, V verde, G magenta, C celeste) 
 
 RF05: Las fichas deberán tener dos tipos de diseño, 3x3 y 5x5
 
