@@ -9,6 +9,7 @@
 <img width="687" height="835" alt="image" src="https://github.com/user-attachments/assets/96c4be20-402e-4a9f-9ace-42b19cfa2c1e" />
 <img width="682" height="322" alt="image" src="https://github.com/user-attachments/assets/65d3f6f6-6b66-4d9b-a446-72d1bc692f10" />
 |==========================================|
+
 ## Requerimientos
 
 RF01: El sistema deberá permitir la visualización de los nombres y numeros de estudiante de los autores
