@@ -13,19 +13,35 @@
 ## Requerimientos
 
 RF01: El sistema deberá permitir la visualización de los nombres y numeros de estudiante de los autores
+
 RF02: El sistema deberá permitir la creación de diseñadores, con nombre **único**, dirección y mail
+
 RF03: El sistema deberá permitir la creación de fichas, con nombre y color (R rojo, A azúl, B blanco, N negro, V verde, G magenta, C celeste)
+
 RF05: Las fichas deberán tener dos tipos de diseño, 3x3 y 5x5
+
 RF06: Las fichas deben ser creadas y almacenadas en strings de length 9 y 25 respectivamente
+
 RF07: El sistema debe permitir la creación de murales **(10Fx12C)**, con diseñador (autor), nombre **único**, 2 fichas **iniciales** (pueden agregarse mnas) correspondientes y tipo de formato (D damero, R random, F alterado por filas, B borde exterior, M manual)
+
 RF08: Al finalizar la creación del mural se deberá mostrar el mismo en tamaño grande y chico
+
 RF09: El sistema debe permitir la modificación de murales, elijiendo el mismo de una lista dada
+
 RF10: La lista de murales debe ser presentada por nombre de mural y nombre del diseñador
+
 RF11: El mural pordá ser modificado indicando posición en fila y columna y cambiando la ficha correspondiente por otra de cualquier tipo
+
 RF12: El mural podrá ser modificado reemplazando todas las apariciones de una ficha por otra, no necesariamente distinta (No se valida que la original y la nueva sean distintas)
+
 RF12: El mural podrá ser modificado restaurandolo a su estado original
+
 TBF
+
 RNF01: Los nombres de los diseñadores deben ser únicos
+
 RNF02: Los nombres de las fichas deben ser en mayúsculas
+
 RNF03: Los murales deben ser almacenados como matrices rectangulares de 10 filas por 12 columnas
+
 TBF
