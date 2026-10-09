@@ -1,6 +1,7 @@
 # Murales-Ascii-OBL1
 |==========================================|
 ## PDF
+
 <img width="709" height="659" alt="image" src="https://github.com/user-attachments/assets/cb40fee0-00c6-4da8-8811-bf12be868735" />
 <img width="688" height="843" alt="image" src="https://github.com/user-attachments/assets/94a9619a-6be1-423f-a99c-b1e04ab7d873" />
 <img width="691" height="627" alt="image" src="https://github.com/user-attachments/assets/5ef9b8a6-85eb-4aa7-be64-ee5e0f136ac7" />
@@ -9,6 +10,7 @@
 <img width="682" height="322" alt="image" src="https://github.com/user-attachments/assets/65d3f6f6-6b66-4d9b-a446-72d1bc692f10" />
 |==========================================|
 ## Requerimientos
+
 RF01: El sistema deberá permitir la visualización de los nombres y numeros de estudiante de los autores
 RF02: El sistema deberá permitir la creación de diseñadores, con nombre **único**, dirección y mail
 RF03: El sistema deberá permitir la creación de fichas, con nombre y color (R rojo, A azúl, B blanco, N negro, V verde, G magenta, C celeste)
