@@ -16,17 +16,17 @@ RF01: El sistema deberá permitir la visualización de los nombres y numeros de 
 
 RF02: El sistema deberá permitir la creación de diseñadores, con nombre **único**, dirección y mail 
 
-RF03: El sistema deberá permitir la creación de fichas, con nombre y color (R rojo, A azúl, B blanco, N negro, V verde, G magenta, C celeste) 
+RF03: El sistema deberá permitir la creación de fichas, con nombre y color (R rojo, A azul, B blanco, N negro, M amarillo, V verde, G magenta, C celeste) 
 
 RF05: Las fichas deberán tener dos tipos de diseño, 3x3 y 5x5
 
 RF06: Las fichas deben ser creadas y almacenadas en strings de length 9 y 25 respectivamente
 
-RF07: El sistema debe permitir la creación de murales **(10Fx12C)**, con diseñador (autor), nombre **único**, 2 fichas **iniciales** (pueden agregarse mnas) correspondientes y tipo de formato (D damero, R random, F alterado por filas, B borde exterior, M manual)
+RF07: El sistema debe permitir la creación de murales **(10Fx12C)**, con diseñador (autor), nombre **único**, 2 fichas **iniciales** (pueden agregarse más) correspondientes y tipo de formato (D damero, R random, F alterado por filas, B borde exterior, M manual)
 
 RF08: Al finalizar la creación del mural se deberá mostrar el mismo en tamaño grande y chico
 
-RF09: El sistema debe permitir la modificación de murales, elijiendo el mismo de una lista dada
+RF09: El sistema debe permitir la modificación de murales, eligiendo el mismo de una lista dada
 
 RF10: La lista de murales debe ser presentada por nombre de mural y nombre del diseñador
 
