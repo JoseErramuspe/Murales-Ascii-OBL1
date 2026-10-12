@@ -12,7 +12,7 @@
 
 ## Requerimientos 
 
-RF01: El sistema deberá permitir la visualización de los nombres y numeros de estudiante de los autores 
+RF01: El sistema deberá permitir la visualización de los nombres y numeros de estudiante de los autores ✅
 
 RF02: El sistema deberá permitir la creación de diseñadores, con nombre **único**, dirección y mail 
 
@@ -28,7 +28,7 @@ RF08: Al finalizar la creación del mural se deberá mostrar el mismo en tamaño
 
 RF09: El sistema debe permitir la modificación de murales, eligiendo el mismo de una lista dada
 
-RF10: La lista de murales debe ser presentada por nombre de mural y nombre del diseñador
+RF10: La lista de murales debe ser presentada por nombre de mural y nombre del diseñador ✅
 
 RF11: El mural pordá ser modificado indicando posición en fila y columna y cambiando la ficha correspondiente por otra de cualquier tipo
 
