@@ -20,7 +20,7 @@ public class Interfaz {
             System.out.println("8) Comparar similitud de murales");
             System.out.println("9) Visualizar todas las fichas");
             System.out.println("0) Terminar\n");
-            opcion = pedirNumero(9);
+            opcion = pedirNumero("Elija una opción",0,9);
             switch(opcion){
                 case 1:
                     mostrarAutores();
@@ -35,7 +35,7 @@ public class Interfaz {
                     // algo
                     break;
                 case 5:
-                    menuMural(elegirMural(sistema.getListaMurales()));
+                    sistema = modificarMural(sistema);
                     break;
                 case 6:
                     // algo
@@ -54,20 +54,20 @@ public class Interfaz {
         System.out.println("\nHasta luego!");
     }
     
-    public static int pedirNumero(int hasta){
+    public static int pedirNumero(String mensaje, int desde, int hasta){
         Scanner in = new Scanner(System.in);
         int ret = -1;
         while(ret<0 || ret>hasta){
-            System.out.println("Ingrese un número (0-"+hasta+")");
+            System.out.println(mensaje+" ("+desde+"-"+hasta+")");
             System.out.print("> ");
             try{
                 ret = in.nextInt();
                 if(ret<0 || ret>hasta){
-                System.out.println("\nERROR. Debe ingresar un número desde 0 hasta "+hasta);
+                System.out.println("\nERROR. Debe ingresar un número desde "+desde+" hasta "+hasta);
                 }
             }
             catch(InputMismatchException e){
-                System.out.println("\nERROR. Debe ingresar un número desde 0 hasta "+hasta);
+                System.out.println("\nERROR. Debe ingresar un número desde "+desde+" hasta "+hasta);
                 in.nextLine();
             }
         }
@@ -85,18 +85,16 @@ public class Interfaz {
         in.nextLine();
     }
     
-    public static Mural elegirMural(ArrayList<Mural> listaMurales){
+    public static Sistema modificarMural(Sistema sistema){
         Scanner in = new Scanner(System.in);
-        for(int i=0; i<listaMurales.size(); i++){
-            Mural mural = listaMurales.get(i);
-            System.out.println((i+1)+") "+mural.getNombre()+" - "+mural.getDiseñador());
+        for(int i=0; i<sistema.getListaMurales().size(); i++){
+            Mural m = sistema.getListaMurales().get(i);
+            System.out.println((i+1)+") "+m.getNombre()+" - "+m.getDiseñador());
         }
-        int opcion = pedirNumero(listaMurales.size())-1;
-        return listaMurales.get(opcion);
-    }
-    
-    public static void menuMural(Mural mural){
+        int pos = pedirNumero("Elija un mural",1,sistema.getListaMurales().size())-1;
+        Mural mural = sistema.getListaMurales().get(pos);
         int opcion=-1;
+        Ficha[][] diseñoNuevo = mural.getDiseñoActual();
         while (opcion != 0){
             System.out.println("\n=================");
             System.out.println("MODIFICAR MURAL");
@@ -105,19 +103,54 @@ public class Interfaz {
             System.out.println("2) Modificar ficha");
             System.out.println("3) Restaurar");
             System.out.println("0) Volver\n");
-            opcion = pedirNumero(3);
+            opcion = pedirNumero("Elija una opción",0,3);
             switch(opcion){
                 case 1:
-                    // algo
+                    int fila = pedirNumero("Elija número de fila",1,10)-1;
+                    int col = pedirNumero("Elija número de columna",1,12)-1;
+                    diseñoNuevo = modificarPosicion(sistema,diseñoNuevo,fila,col);
                     break;
                 case 2:
-                    // algo
+                    Ficha original = elegirFicha("Elija la ficha a quitar",mural.getListaFichas());
+                    Ficha actual = elegirFicha("Elija la nueva ficha",sistema.getListaFichas());
+                    diseñoNuevo = modificarFicha(original, actual,diseñoNuevo);
+                    mural.modificarFicha(original, actual);
                     break;
                 case 3:
-                    // algo
+                    mural.setDiseñoActual(mural.getDiseñoOriginal());
                     break;
             }
+            //mostrar diseñoNuevo en los dos tamaños
         }
+        mural.setDiseñoActual(diseñoNuevo);
+        sistema.removerMural(pos);
+        sistema.agregarMural(mural);
+        return sistema;
+    }
+    
+    public static Ficha[][] modificarPosicion(Sistema sistema, Ficha[][] diseño, int fila, int col){
+        diseño[fila][col] = elegirFicha("Elija la ficha a colocar",sistema.getListaFichas());;
+        return diseño;
+    }
+    
+    public static Ficha[][] modificarFicha(Ficha original, Ficha actual, Ficha[][] diseño){
+        for (int i = 0; i < diseño.length; i++) {
+            for (int j = 0; j < diseño.length; j++) {
+                if (diseño[i][j].equals(original)){
+                    diseño[i][j]=actual;
+                }
+            }
+        }
+        return diseño;
+    }
+    
+    public static Ficha elegirFicha(String mensaje, ArrayList<Ficha> listaFichas){
+        for (int i = 0; i < listaFichas.size(); i++) {
+            System.out.println((i+1)+") "+listaFichas.get(i));
+        }
+        System.out.println("");
+        int pos = pedirNumero(mensaje,1,listaFichas.size())-1;
+        return listaFichas.get(pos);
     }
     
     public static String pedirColor(){
@@ -148,3 +181,4 @@ public class Interfaz {
         return color;
     }
 }
+    
