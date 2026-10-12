@@ -28,4 +28,9 @@ public class Ficha {
     public String getColor() {
         return color;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }
