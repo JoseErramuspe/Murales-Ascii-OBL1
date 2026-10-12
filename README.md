@@ -11,30 +11,40 @@
 |==========================================|
 
 ## Requerimientos 
+🟢 Hecho y probado
+🟡 Hecho pero falta probarlo
 
-RF01: El sistema deberá permitir la visualización de los nombres y numeros de estudiante de los autores ✅
+RF01: El sistema deberá permitir la visualización de los nombres y numeros de estudiante de los autores 🟢
 
 RF02: El sistema deberá permitir la creación de diseñadores, con nombre **único**, dirección y mail 
 
 RF03: El sistema deberá permitir la creación de fichas, con nombre y color (R rojo, A azul, B blanco, N negro, M amarillo, V verde, G magenta, C celeste) 
 
-RF05: Las fichas deberán tener dos tipos de diseño, 3x3 y 5x5
+RF04: Las fichas deberán tener dos tipos de diseño, 3x3 y 5x5
 
-RF06: Las fichas deben ser creadas y almacenadas en strings de length 9 y 25 respectivamente
+RF05: Las fichas deben ser creadas y almacenadas en strings de length 9 y 25 respectivamente
 
-RF07: El sistema debe permitir la creación de murales **(10Fx12C)**, con diseñador (autor), nombre **único**, 2 fichas **iniciales** (pueden agregarse más) correspondientes y tipo de formato (D damero, R random, F alterado por filas, B borde exterior, M manual)
+RF06: El sistema debe permitir la creación de murales **(10Fx12C)**, con diseñador (autor), nombre **único**, 2 fichas **iniciales** (pueden agregarse más) correspondientes y tipo de formato (D damero, R random, F alterado por filas, B borde exterior, M manual)
 
-RF08: Al finalizar la creación del mural se deberá mostrar el mismo en tamaño grande y chico
+RF07: Al finalizar la creación del mural se deberá mostrar el mismo en tamaño grande y chico
 
-RF09: El sistema debe permitir la modificación de murales, eligiendo el mismo de una lista dada
+RF08: El sistema debe permitir la modificación de murales, eligiendo el mismo de una lista dada 🟡
 
-RF10: La lista de murales debe ser presentada por nombre de mural y nombre del diseñador ✅
+RF09: La lista de murales debe ser presentada por nombre de mural y nombre del diseñador 🟡
 
-RF11: El mural pordá ser modificado indicando posición en fila y columna y cambiando la ficha correspondiente por otra de cualquier tipo
+RF10: El mural pordá ser modificado indicando posición en fila y columna y cambiando la ficha correspondiente por otra de cualquier tipo 🟡
 
-RF12: El mural podrá ser modificado reemplazando todas las apariciones de una ficha por otra, no necesariamente distinta (No se valida que la original y la nueva sean distintas)
+RF11: El mural podrá ser modificado reemplazando todas las apariciones de una ficha por otra, no necesariamente distinta (No se valida que la original y la nueva sean distintas) 🟡
 
-RF12: El mural podrá ser modificado restaurandolo a su estado original
+RF12: El mural podrá ser modificado restaurandolo a su estado original 🟡
+
+RF13: El sistema deberá permitir elegir un diseñador para visualizar sus murales
+
+RF14: El sistema deberá permitir visualizar una lista de los diseñadores con todos sus datos, incluido la cantidad de fichas y colores que utilizó cada uno
+
+RF15: El sistema deberá permitir saber si, dado un mural y un área rectangular de dicho mural, hay otros murales con un área idéntica a la seleccionada, cuáles son y en dónde está (si hay más de un área idéntica, se devuelve una de ellas)
+
+RF16: El sistema deberá permitir visualizar todas las fichas registradas
 
 TBF
 
