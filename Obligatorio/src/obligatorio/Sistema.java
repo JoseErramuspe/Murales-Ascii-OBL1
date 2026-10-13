@@ -41,4 +41,14 @@ public class Sistema {
         this.listaDiseñadores.add(diseñador);
     }
     
+    public boolean existeNombreDiseñador(String nombre) {
+        boolean existe = false;
+        for (Diseñador dis : this.listaDiseñadores) {
+            if (dis.getNombre().toUpperCase().equals(nombre.toUpperCase())) {
+                existe = true;
+            }
+        }
+        return existe;
+    }
+    
 }

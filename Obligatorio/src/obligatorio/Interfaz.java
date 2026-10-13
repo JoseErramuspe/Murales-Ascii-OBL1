@@ -26,7 +26,7 @@ public class Interfaz {
                     mostrarAutores();
                     break;
                 case 2:
-                    // algo
+                    crearDiseñador(sistema);
                     break;
                 case 3:
                     // algo
@@ -41,7 +41,7 @@ public class Interfaz {
                     // algo
                     break;
                 case 7:
-                    // algo
+                    mostrarDiseñadores(sistema);
                     break;
                 case 8:
                     // algo
@@ -70,6 +70,20 @@ public class Interfaz {
                 System.out.println("\nERROR. Debe ingresar un número desde "+desde+" hasta "+hasta);
                 in.nextLine();
             }
+        }
+        return ret;
+    }
+    
+    public static String pedirString(String mensaje){
+        Scanner in = new Scanner(System.in);
+        String ret = "null";
+        System.out.println(mensaje);
+        try{
+            ret = in.nextLine();
+        }
+        catch(InputMismatchException e){
+            System.out.println("\nERROR. El string ingresado es incorrecto");
+            in.nextLine();
         }
         return ret;
     }
@@ -179,6 +193,35 @@ public class Interfaz {
             }
         }
         return color;
+    }
+    
+    public static void crearDiseñador(Sistema sistema) {
+        Scanner in = new Scanner(System.in);
+        String nombre = pedirString("Ingrese nombre");
+        if (!sistema.existeNombreDiseñador(nombre)) {
+            sistema.agregarDiseñador(new Diseñador(nombre, pedirString("Ingrese dirección"), pedirString("Ingrese mail")));
+            System.out.println("Diseñador creado correctamente");
+        } else {
+            System.out.println("ERROR. Nombre de diseñador ya existe");
+        }
+        System.out.println("Presione ENTER para continuar...\n");
+        in.nextLine();
+    }
+    
+    public static void mostrarDiseñadores(Sistema sistema) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("\n=================");
+        System.out.println("DISEÑADORES");
+        System.out.println("=================");
+        if (sistema.getListaDiseñadores().size() == 0) {
+            System.out.println("No existen diseñadores");
+        } else {
+            for (Diseñador dis : sistema.getListaDiseñadores()) {
+            System.out.println(dis.toString() + ", Murales Creados: " + dis.cantidadMuralesCreados(sistema) + ", Fichas Usadas: " + dis.cantidadFichasUsadas(sistema) + ", Colores Usados: " + dis.cantidadColoresUsados(sistema));
+        }
+        }
+        System.out.println("Presione ENTER para continuar...");
+        in.nextLine();
     }
 }
     
