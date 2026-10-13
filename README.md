@@ -40,9 +40,9 @@ RF12: El mural podrá ser modificado restaurandolo a su estado original 🟡
 
 RF13: El sistema deberá permitir elegir un diseñador para visualizar sus murales
 
-RF14: El sistema deberá permitir visualizar una lista de los diseñadores con todos sus datos, incluido la cantidad de fichas y colores que utilizó cada uno
+RF14: El sistema deberá permitir visualizar una lista de los diseñadores con todos sus datos, incluido la cantidad de fichas y colores que utilizó cada uno 🟡
 
-RF15: El sistema deberá permitir saber si, dado un mural y un área rectangular de dicho mural, hay otros murales con un área idéntica a la seleccionada, cuáles son y en dónde está (si hay más de un área idéntica, se devuelve una de ellas)
+RF15: El sistema deberá permitir saber si, dado un mural y un área rectangular de dicho mural, hay otros murales con un área idéntica a la seleccionada, cuáles son y en dónde está (si hay más de un área idéntica, se devuelve una de ellas) 
 
 RF16: El sistema deberá permitir visualizar todas las fichas registradas
 
