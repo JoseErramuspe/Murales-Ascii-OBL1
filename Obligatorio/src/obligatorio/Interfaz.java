@@ -35,7 +35,7 @@ public class Interfaz {
                     // algo
                     break;
                 case 5:
-                    sistema = modificarMural(sistema);
+                    modificarMural(sistema);
                     break;
                 case 6:
                     // algo
@@ -99,7 +99,7 @@ public class Interfaz {
         in.nextLine();
     }
     
-    public static Sistema modificarMural(Sistema sistema){
+    public static void modificarMural(Sistema sistema){
         Scanner in = new Scanner(System.in);
         for(int i=0; i<sistema.getListaMurales().size(); i++){
             Mural m = sistema.getListaMurales().get(i);
@@ -139,7 +139,6 @@ public class Interfaz {
         mural.setDiseñoActual(diseñoNuevo);
         sistema.removerMural(pos);
         sistema.agregarMural(mural);
-        return sistema;
     }
     
     public static Ficha[][] modificarPosicion(Sistema sistema, Ficha[][] diseño, int fila, int col){
