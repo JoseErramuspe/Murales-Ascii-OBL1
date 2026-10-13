@@ -212,7 +212,7 @@ public class Interfaz {
         System.out.println("\n=================");
         System.out.println("DISEÑADORES");
         System.out.println("=================");
-        if (sistema.getListaDiseñadores().size() == 0) {
+        if (sistema.getListaDiseñadores().isEmpty()) {
             System.out.println("No existen diseñadores");
         } else {
             for (Diseñador dis : sistema.getListaDiseñadores()) {
