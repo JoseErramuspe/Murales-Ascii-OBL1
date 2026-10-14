@@ -207,30 +207,39 @@ public class Interfaz {
     
     public static void crearFicha(Sistema sistema, HashMap<String, String> colores) {
         Scanner in = new Scanner(System.in);
+        boolean error = false;
         String nombre = pedirString("Ingrese nombre").toUpperCase();
-        if (!sistema.existeNombreFicha(nombre)) {
+        if (sistema.existeNombreFicha(nombre)) {
+            System.out.println("ERROR. Nombre de ficha ya existe");
+            error = true;
+        }
+        if (!error) {
             String diseñoChico = pedirString("Ingrese el diseño chico (9 caracteres, '.' = espacio)");
-            if(diseñoChico.length()==9){
+            if (diseñoChico.length() != 9) {
+                System.out.println("ERROR. El diseño chico debe ser de 3x3 (9 caracteres)");
+                error = true;
+            }
+            if (!error) {
                 String diseñoGrande = pedirString("Ingrese el diseño grande (25 caracteres, '.' = espacio)");
-                if(diseñoGrande.length()==25){
+                if (diseñoGrande.length() != 25) {
+                    System.out.println("ERROR. El diseño grande debe ser de 5x5 (25 caracteres)");
+                    error = true;
+                }
+                if (!error) {
                     String color = pedirString("Ingrese el color (R=rojo, A=azul, B=blanco, N=negro, M=amarillo, V=verde, G=magenta, C=celeste)").toUpperCase();
-                    if(colores.containsKey(color)){
+                    if (!colores.containsKey(color)) {
+                        System.out.println("ERROR. No se ingresó un color permitido");
+                        error = true;
+                    }
+                    if (!error) {
                         sistema.agregarFicha(new Ficha(nombre, diseñoChico, diseñoGrande, color));
                         System.out.println("Ficha creada correctamente");
                     }
-                    else {
-                        System.out.println("ERROR. No se ingresó un color permitido");
-                    }
+
                 }
-                else {
-                    System.out.println("ERROR. El diseño grande debe ser de 5x5 (25 caracteres)");
-                }
+
             }
-            else{
-                System.out.println("ERROR. El diseño chico debe ser de 3x3 (9 caracteres)");
-            }
-        } else {
-            System.out.println("ERROR. Nombre de ficha ya existe");
+
         }
         System.out.println("Presione ENTER para continuar...\n");
         in.nextLine();
