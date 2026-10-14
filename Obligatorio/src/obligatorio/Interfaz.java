@@ -6,6 +6,16 @@ public class Interfaz {
     
     public static void menuPrincipal(Sistema sistema){
         int opcion=-1;
+        HashMap <String, String> colores = new HashMap<>();
+        colores.put("R", "\033[31m");
+        colores.put("A", "\033[34m");
+        colores.put("B", "\033[37m");
+        colores.put("N", "\033[30m");
+        colores.put("M", "\033[33m");
+        colores.put("V", "\033[32m");
+        colores.put("G", "\033[35m");
+        colores.put("C", "\033[36m");
+        colores.put("P", "\u001B[0m"); //parar de pintar
         while (opcion != 0){
             System.out.println("\n=================");
             System.out.println("MENU");
@@ -29,7 +39,7 @@ public class Interfaz {
                     crearDiseñador(sistema);
                     break;
                 case 3:
-                    // algo
+                    crearFicha(sistema, colores);
                     break;
                 case 4:
                     // algo
@@ -76,7 +86,7 @@ public class Interfaz {
     
     public static String pedirString(String mensaje){
         Scanner in = new Scanner(System.in);
-        String ret = "null";
+        String ret = "";
         System.out.println(mensaje);
         try{
             ret = in.nextLine();
@@ -166,34 +176,6 @@ public class Interfaz {
         return listaFichas.get(pos);
     }
     
-    public static String pedirColor(){
-        Scanner in = new Scanner(System.in);
-        String color = "";
-        boolean ok = false;
-        while(!ok){
-            System.out.println("Ingrese color de la ficha: ");
-            System.out.println("R=Rojo A=Azul B=Blanco N=Negro M=Amarillo V=Verde G=Magenta C=Celeste");
-            System.out.print("> ");
-            color = in.nextLine().toUpperCase();
-            switch(color){
-                case "R":
-                case "A":
-                case "B":
-                case "N":
-                case "M":
-                case "V":
-                case "G":
-                case "C":
-                    ok = true;
-                    break;
-                default:
-                    System.out.println("ERROR. No ingresó un color permitido\n");
-                    break;
-            }
-        }
-        return color;
-    }
-    
     public static void crearDiseñador(Sistema sistema) {
         Scanner in = new Scanner(System.in);
         String nombre = pedirString("Ingrese nombre");
@@ -222,5 +204,35 @@ public class Interfaz {
         System.out.println("Presione ENTER para continuar...");
         in.nextLine();
     }
-}
     
+    public static void crearFicha(Sistema sistema, HashMap<String, String> colores) {
+        Scanner in = new Scanner(System.in);
+        String nombre = pedirString("Ingrese nombre").toUpperCase();
+        if (!sistema.existeNombreFicha(nombre)) {
+            String diseñoChico = pedirString("Ingrese el diseño chico (9 caracteres, '.' = espacio)");
+            if(diseñoChico.length()==9){
+                String diseñoGrande = pedirString("Ingrese el diseño grande (25 caracteres, '.' = espacio)");
+                if(diseñoGrande.length()==25){
+                    String color = pedirString("Ingrese el color (R=rojo, A=azul, B=blanco, N=negro, M=amarillo, V=verde, G=magenta, C=celeste)").toUpperCase();
+                    if(colores.containsKey(color)){
+                        sistema.agregarFicha(new Ficha(nombre, diseñoChico, diseñoGrande, color));
+                        System.out.println("Ficha creada correctamente");
+                    }
+                    else {
+                        System.out.println("ERROR. No se ingresó un color permitido");
+                    }
+                }
+                else {
+                    System.out.println("ERROR. El diseño grande debe ser de 5x5 (25 caracteres)");
+                }
+            }
+            else{
+                System.out.println("ERROR. El diseño chico debe ser de 3x3 (9 caracteres)");
+            }
+        } else {
+            System.out.println("ERROR. Nombre de ficha ya existe");
+        }
+        System.out.println("Presione ENTER para continuar...\n");
+        in.nextLine();
+    }
+}
