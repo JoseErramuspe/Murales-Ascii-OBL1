@@ -10,8 +10,8 @@ public class Ficha {
 
     public Ficha(String nombre, String diseñoChico, String diseñoGrande, String color) {
         this.nombre = nombre;
-        this.diseñoChico = diseñoChico;
-        this.diseñoGrande = diseñoGrande;
+        this.diseñoChico = puntosAEspacios(diseñoChico);
+        this.diseñoGrande = puntosAEspacios(diseñoGrande);
         this.color = color;
     }
     
@@ -20,11 +20,11 @@ public class Ficha {
     }
 
     public String getDiseñoChico() {
-        return puntosAEspacios(diseñoChico);
+        return diseñoChico;
     }
 
     public String getDiseñoGrande() {
-        return puntosAEspacios(diseñoGrande);
+        return diseñoGrande;
     }
 
     public String getColor() {
