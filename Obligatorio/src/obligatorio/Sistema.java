@@ -29,8 +29,8 @@ public class Sistema {
         this.listaMurales.add(mural);
     }
     
-    public void removerMural(int pos){
-        this.listaMurales.remove(pos);
+    public void cambiarMural(int pos, Mural mural){
+        this.listaMurales.set(pos, mural);
     }
     
     public ArrayList<Diseñador> getListaDiseñadores() {
