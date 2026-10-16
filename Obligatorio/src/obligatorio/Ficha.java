@@ -65,9 +65,8 @@ public class Ficha {
             diseño = this.diseñoChico;
             largo = 3;
         }
-        System.out.print(colores.get(color));
         for (int i = 0; i < largo*largo; i+=largo) {
-            System.out.print(diseño.substring(i,i+largo));
+            System.out.print(colores.get(color)+diseño.substring(i,i+largo));
             System.out.println("");
         }
         System.out.print(colores.get("P"));
