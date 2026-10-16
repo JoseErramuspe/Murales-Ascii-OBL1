@@ -2,7 +2,7 @@ package obligatorio;
 
 import java.util.*;
 
-public class Diseñador {
+public class Diseñador implements Comparable<Diseñador> {
     private String nombre;
     private String direccion;
     private String mail;
@@ -66,5 +66,10 @@ public class Diseñador {
     @Override
     public String toString() {
         return "Nombre: " + nombre + ", Mail: " + mail + ", Dirección: " + direccion;
+    }
+
+    @Override
+    public int compareTo(Diseñador dis) {
+        return this.getNombre().compareToIgnoreCase(dis.getNombre());
     }
 }

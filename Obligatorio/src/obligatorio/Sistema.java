@@ -51,4 +51,24 @@ public class Sistema {
         return existe;
     }
     
+    public boolean existeNombreFicha(String nombre) {
+        boolean existe = false;
+        for (Ficha fich : this.listaFichas) {
+            if (fich.getNombre().toUpperCase().equals(nombre.toUpperCase())) {
+                existe = true;
+            }
+        }
+        return existe;
+    }
+    
+    public boolean existeNombreMural(String nombre) {
+        boolean existe = false;
+        for (Mural mur : this.listaMurales) {
+            if (mur.getNombre().toUpperCase().equals(nombre.toUpperCase())) {
+                existe = true;
+            }
+        }
+        return existe;
+    }
+    
 }

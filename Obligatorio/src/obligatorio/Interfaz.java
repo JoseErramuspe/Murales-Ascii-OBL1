@@ -42,7 +42,7 @@ public class Interfaz {
                     crearFicha(sistema, colores);
                     break;
                 case 4:
-                    // algo
+                    crearMural(sistema);
                     break;
                 case 5:
                     modificarMural(sistema);
@@ -105,6 +105,64 @@ public class Interfaz {
         System.out.println("=================\n");
         System.out.println("José Gabriel Erramuspe Rodríguez - 353422");
         System.out.println("Damián Agustín Torres Aramburu - 371643\n");
+        System.out.println("Presione ENTER para continuar...");
+        in.nextLine();
+    }
+    
+    public static void mostrarDiseñadores(Sistema sistema) {
+        ArrayList<Diseñador> listaDiseñadores = new ArrayList<>(sistema.getListaDiseñadores());
+        Collections.sort(listaDiseñadores);
+        Scanner in = new Scanner(System.in);
+        System.out.println("\n=================");
+        System.out.println("DISEÑADORES");
+        System.out.println("=================");
+        if (listaDiseñadores.isEmpty()) {
+            System.out.println("No existen diseñadores");
+        } else {
+            for (Diseñador dis : listaDiseñadores) {
+                System.out.println(dis.toString() + ", Murales Creados: " + dis.cantidadMuralesCreados(sistema) + ", Fichas Usadas: " + dis.cantidadFichasUsadas(sistema) + ", Colores Usados: " + dis.cantidadColoresUsados(sistema));
+            }
+        }
+        System.out.println("Presione ENTER para continuar...");
+        in.nextLine();
+    }
+    
+    public static void mostrarFicha(Ficha ficha) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("\n=================");
+        System.out.println(ficha.getNombre());
+        System.out.println("=================");
+        System.out.println("Diseño grande:");
+        for (int i = 0; i < ficha.getDiseñoGrande().length(); i++) {
+            if (ficha.getDiseñoGrande().charAt(i) == '.') {
+                System.out.print(" ");
+            } else {
+                System.out.print(ficha.getDiseñoGrande().charAt(i));
+            }
+            if ((i+1)%5 == 0) {
+                System.out.println("");
+            }
+        }
+        System.out.println("");
+        System.out.println("Diseño chico:");
+        for (int i = 0; i < ficha.getDiseñoChico().length(); i++) {
+            if (ficha.getDiseñoChico().charAt(i) == '.') {
+                System.out.print(" ");
+            } else {
+                System.out.print(ficha.getDiseñoChico().charAt(i));
+            }
+            if ((i+1)%3 == 0) {
+                System.out.println("");
+            }
+        }
+    }
+    
+    public static void mostrarMural(Mural mural, boolean mostrarGrande) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("\n=================");
+        System.out.println(mural.getNombre());
+        System.out.println("=================");
+        // FALTA TERMINAR
         System.out.println("Presione ENTER para continuar...");
         in.nextLine();
     }
@@ -179,67 +237,174 @@ public class Interfaz {
     public static void crearDiseñador(Sistema sistema) {
         Scanner in = new Scanner(System.in);
         String nombre = pedirString("Ingrese nombre");
-        if (!sistema.existeNombreDiseñador(nombre)) {
+        if (!sistema.existeNombreDiseñador(nombre) && !nombre.isBlank()) {
             sistema.agregarDiseñador(new Diseñador(nombre, pedirString("Ingrese dirección"), pedirString("Ingrese mail")));
             System.out.println("Diseñador creado correctamente");
         } else {
-            System.out.println("ERROR. Nombre de diseñador ya existe");
+            System.out.println("ERROR. Nombre de diseñador ya existe o es vacío");
         }
         System.out.println("Presione ENTER para continuar...\n");
-        in.nextLine();
-    }
-    
-    public static void mostrarDiseñadores(Sistema sistema) {
-        Scanner in = new Scanner(System.in);
-        System.out.println("\n=================");
-        System.out.println("DISEÑADORES");
-        System.out.println("=================");
-        if (sistema.getListaDiseñadores().isEmpty()) {
-            System.out.println("No existen diseñadores");
-        } else {
-            for (Diseñador dis : sistema.getListaDiseñadores()) {
-            System.out.println(dis.toString() + ", Murales Creados: " + dis.cantidadMuralesCreados(sistema) + ", Fichas Usadas: " + dis.cantidadFichasUsadas(sistema) + ", Colores Usados: " + dis.cantidadColoresUsados(sistema));
-        }
-        }
-        System.out.println("Presione ENTER para continuar...");
         in.nextLine();
     }
     
     public static void crearFicha(Sistema sistema, HashMap<String, String> colores) {
         Scanner in = new Scanner(System.in);
         boolean error = false;
+        String diseñoChico = ".........";
+        String diseñoGrande = ".........................";
+        String color = "R";
         String nombre = pedirString("Ingrese nombre").toUpperCase();
         if (sistema.existeNombreFicha(nombre)) {
             System.out.println("ERROR. Nombre de ficha ya existe");
             error = true;
         }
+        if (nombre.isBlank()) {
+            System.out.println("ERROR. Nombre de ficha es vacío");
+            error = true;
+        }
         if (!error) {
-            String diseñoChico = pedirString("Ingrese el diseño chico (9 caracteres, '.' = espacio)");
+            diseñoChico = pedirString("Ingrese el diseño chico (9 caracteres, '.' = espacio)");
             if (diseñoChico.length() != 9) {
                 System.out.println("ERROR. El diseño chico debe ser de 3x3 (9 caracteres)");
                 error = true;
             }
-            if (!error) {
-                String diseñoGrande = pedirString("Ingrese el diseño grande (25 caracteres, '.' = espacio)");
-                if (diseñoGrande.length() != 25) {
-                    System.out.println("ERROR. El diseño grande debe ser de 5x5 (25 caracteres)");
-                    error = true;
-                }
-                if (!error) {
-                    String color = pedirString("Ingrese el color (R=rojo, A=azul, B=blanco, N=negro, M=amarillo, V=verde, G=magenta, C=celeste)").toUpperCase();
-                    if (!colores.containsKey(color)) {
-                        System.out.println("ERROR. No se ingresó un color permitido");
-                        error = true;
-                    }
-                    if (!error) {
-                        sistema.agregarFicha(new Ficha(nombre, diseñoChico, diseñoGrande, color));
-                        System.out.println("Ficha creada correctamente");
-                    }
-
-                }
-
+        }
+        if (!error) {
+            diseñoGrande = pedirString("Ingrese el diseño grande (25 caracteres, '.' = espacio)");
+            if (diseñoGrande.length() != 25) {
+                System.out.println("ERROR. El diseño grande debe ser de 5x5 (25 caracteres)");
+                error = true;
             }
-
+        }
+        if (!error) {
+            color = pedirString("Ingrese el color (R=rojo, A=azul, B=blanco, N=negro, M=amarillo, V=verde, G=magenta, C=celeste)").toUpperCase();
+            if (!colores.containsKey(color)) {
+                System.out.println("ERROR. No se ingresó un color permitido");
+                error = true;
+            }
+        }
+        if (!error) {
+            Ficha nuevaFicha = new Ficha(nombre, diseñoChico, diseñoGrande, color);
+            sistema.agregarFicha(nuevaFicha);
+            System.out.println("Ficha creada correctamente");
+            mostrarFicha(nuevaFicha);
+        }
+        System.out.println("Presione ENTER para continuar...\n");
+        in.nextLine();
+    }
+    
+    public static void crearMural(Sistema sistema) {
+        Scanner in = new Scanner(System.in);
+        boolean error = false;
+        Diseñador autor = null;
+        Ficha ficha1 = null;
+        Ficha ficha2 = null;
+        String nombre = "null";
+        Ficha[][] diseño = new Ficha[10][12];
+        if (sistema.getListaDiseñadores().isEmpty()) {
+            System.out.println("ERROR. No se han agregado diseñadores aún");
+            error = true;
+        }
+        if (sistema.getListaFichas().size() < 2 && !error) {
+            System.out.println("ERROR. Se requieren al menos dos fichas para crear un mural");
+            error = true;
+        }
+        if (!error) {
+            nombre = pedirString("Ingrese nombre");
+            if (sistema.existeNombreMural(nombre)) {
+                System.out.println("ERROR. Nombre de mural ya existe");
+                error = true;
+            }
+            if (nombre.isBlank()) {
+                System.out.println("ERROR. Nombre de mural es vacío");
+                error = true;
+            }
+        }
+        if (!error) {
+            ArrayList<Diseñador> listaDiseñadores = new ArrayList<>(sistema.getListaDiseñadores());
+            Collections.sort(listaDiseñadores);
+            for (int i = 0; i < listaDiseñadores.size(); i++) {
+                System.out.println((i+1)+". "+listaDiseñadores.get(i).getNombre());
+            }
+            autor = listaDiseñadores.get((pedirNumero("Seleccione diseñador del mural", 1, listaDiseñadores.size())));
+        }
+        if (!error) {
+            ArrayList<Ficha> listaFichas = new ArrayList<>(sistema.getListaFichas());
+            for (int i = 0; i < listaFichas.size(); i++) {
+                System.out.println((i+1)+". "+listaFichas.get(i).getNombre());
+            }
+            ficha1 = listaFichas.get((pedirNumero("Seleccione primera ficha del mural", 1, listaFichas.size())));
+            ficha2 = listaFichas.get((pedirNumero("Seleccione segunda ficha del mural distinta a la primera", 1, listaFichas.size())));
+            if (ficha1 == ficha2) {
+                System.out.println("ERROR. Fichas seleccionadas son iguales");
+                error = true;
+            }
+        }
+        if (!error) {
+            String tipoDeMural = pedirString("Ingrese el método de creación del mural (D=damero, R=random, F=alternado por filas, B=borde exterior, M=manual)").toUpperCase();
+            switch (tipoDeMural) {
+                case "D":
+                    boolean vaPrimera = true;
+                    for (int i = 0; i < 10; i++) {
+                        for (int j = 0; j < 12; j++) {
+                            if (vaPrimera) {
+                                diseño[i][j] = ficha1;
+                                vaPrimera = !vaPrimera;
+                            }
+                        }
+                        vaPrimera = !vaPrimera;
+                    }
+                    break;
+                case "R":
+                    Random random = new Random();
+                    for (int i = 0; i < 10; i++) {
+                        for (int j = 0; j < 12; j++) {
+                            if (random.nextInt(2) == 0) {
+                                diseño[i][j] = ficha1;
+                            } else {
+                                diseño[i][j] = ficha2;
+                            }
+                        }
+                    }
+                    break;
+                case "F":
+                    for (int i = 0; i < 10; i++) {
+                        for (int j = 0; j < 12; j++) {
+                            if (i%2 == 0) {
+                                diseño[i][j] = ficha1;
+                            } else {
+                                diseño[i][j] = ficha2;
+                            }
+                        }
+                    }
+                    break;
+                case "B":
+                    for (int i = 0; i < 10; i++) {
+                        for (int j = 0; j < 12; j++) {
+                            if (i == 0 || i == 9 || j == 0 || j == 11) {
+                                diseño[i][j] = ficha1;
+                            } else {
+                                diseño[i][j] = ficha2;
+                            }
+                        }
+                    }
+                    break;
+                case "M":
+                    for (int i = 0; i < 10; i++) {
+                        for (int j = 0; j < 12; j++) {
+                            if (pedirNumero("Seleccione ficha 1 o 2 para la posición "+(i+1)+","+(j+1), 1, 2) == 1) {
+                                diseño[i][j] = ficha1;
+                            } else {
+                                diseño[i][j] = ficha2;
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+        if (!error) {
+            sistema.agregarMural(new Mural(nombre, autor, diseño));
+            System.out.println("Mural creado correctamente");
         }
         System.out.println("Presione ENTER para continuar...\n");
         in.nextLine();
