@@ -47,28 +47,4 @@ public class Ficha {
         }
         return ret;
     }
-    
-    public void mostrar(HashMap<String,String> colores){
-        System.out.println("Ficha: "+this.nombre);
-        System.out.println("Color: "+this.color);
-        System.out.println("Tamaño chico: ");
-        verDiseño(true, colores);
-        System.out.println("Tamaño grande: ");
-        verDiseño(false, colores);
-    }
-    
-    public void verDiseño(boolean chico, HashMap<String,String> colores){
-        String color = this.getColor();
-        String diseño = this.diseñoGrande;
-        int largo = 5;
-        if(chico){
-            diseño = this.diseñoChico;
-            largo = 3;
-        }
-        for (int i = 0; i < largo*largo; i+=largo) {
-            System.out.print(colores.get(color)+diseño.substring(i,i+largo));
-            System.out.println("");
-        }
-        System.out.print(colores.get("P"));
-    }
 }
