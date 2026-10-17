@@ -42,7 +42,7 @@ public class Interfaz {
                     crearFicha(sistema, colores);
                     break;
                 case 4:
-                    crearMural(sistema);
+                    crearMural(sistema, colores);
                     break;
                 case 5:
                     modificarMural(sistema, colores);
@@ -267,7 +267,7 @@ public class Interfaz {
         in.nextLine();
     }
 
-    public static void crearMural(Sistema sistema) {
+    public static void crearMural(Sistema sistema, HashMap<String, String> colores) {
         Scanner in = new Scanner(System.in);
         ArrayList<Ficha> listaFichas = sistema.getListaFichas();
         ArrayList<Ficha> fichasDelMural = new ArrayList<>();
@@ -385,6 +385,8 @@ public class Interfaz {
         if (!error) {
             Mural mur = new Mural(nombre, autor, diseño, ficha1, ficha2, tipoDeMural, fichasDelMural);
             sistema.agregarMural(mur);
+            mostrarMural(mur, false, colores);
+            mostrarMural(mur, true, colores);
             System.out.println("Mural creado correctamente");
         }
         System.out.println("Presione ENTER para continuar...\n");
