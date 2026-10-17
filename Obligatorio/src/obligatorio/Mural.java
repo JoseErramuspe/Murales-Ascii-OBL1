@@ -14,6 +14,7 @@ public class Mural {
         this.diseñador = diseñador;
         this.diseñoOriginal = diseño.clone();
         this.diseñoActual = diseño.clone();
+        this.listaFichas = new ArrayList<>();
     }
 
     public Diseñador getDiseñador() {
