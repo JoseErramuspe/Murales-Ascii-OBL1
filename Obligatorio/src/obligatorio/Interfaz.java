@@ -66,13 +66,13 @@ public class Interfaz {
 
     public static int pedirNumero(String mensaje, int desde, int hasta) {
         Scanner in = new Scanner(System.in);
-        int ret = -1;
-        while (ret < 0 || ret > hasta) {
+        int ret = desde-1;
+        while (ret < desde || ret > hasta) {
             System.out.println(mensaje + " (" + desde + "-" + hasta + ")");
             System.out.print("> ");
             try {
                 ret = in.nextInt();
-                if (ret < 0 || ret > hasta) {
+                if (ret < desde || ret > hasta) {
                     System.out.println("\nERROR. Debe ingresar un número desde " + desde + " hasta " + hasta);
                 }
             } catch (InputMismatchException e) {
