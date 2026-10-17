@@ -42,13 +42,13 @@ public class Interfaz {
                     crearFicha(sistema, colores);
                     break;
                 case 4:
-                    // algo
+                    crearMural(sistema);
                     break;
                 case 5:
                     modificarMural(sistema, colores);
                     break;
                 case 6:
-                    // algo
+                    visualizarMurales(sistema, colores);
                     break;
                 case 7:
                     mostrarDiseñadores(sistema);
@@ -57,7 +57,7 @@ public class Interfaz {
                     // algo
                     break;
                 case 9:
-                    // algo
+                    visualizarFichas(sistema, colores);
                     break;
             }
         }
@@ -238,7 +238,6 @@ public class Interfaz {
             }
         }
         if (!error) {
-            diseñoChico = diseñoChico;
             diseñoGrande = pedirString("Ingrese el diseño grande (25 caracteres, '.' = espacio)");
             if (diseñoGrande.length() != 25) {
                 System.out.println("ERROR. El diseño grande debe ser de 5x5 (25 caracteres)");
@@ -246,7 +245,6 @@ public class Interfaz {
             }
         }
         if (!error) {
-            diseñoGrande = diseñoGrande;
             color = pedirString("Ingrese el color (R=rojo, A=azul, B=blanco, N=negro, M=amarillo, V=verde, G=magenta, C=celeste)").toUpperCase();
             if (!colores.containsKey(color)) {
                 System.out.println("ERROR. No se ingresó un color permitido");
@@ -264,8 +262,8 @@ public class Interfaz {
     public static void crearMural(Sistema sistema) {
         Scanner in = new Scanner(System.in);
         ArrayList<Ficha> listaFichas = sistema.getListaFichas();
+        ArrayList<Ficha> fichasDelMural = new ArrayList<>();
         boolean error = false;
-        boolean dosFichas = true;
         Diseñador autor = null;
         Ficha ficha1 = null;
         Ficha ficha2 = null;
@@ -315,8 +313,12 @@ public class Interfaz {
                         for (int j = 0; j < 12; j++) {
                             if (vaPrimera) {
                                 diseño[i][j] = ficha1;
-                                vaPrimera = !vaPrimera;
                             }
+                            else {
+                                diseño[i][j] = ficha2;
+                                
+                            }
+                            vaPrimera = !vaPrimera;
                         }
                         vaPrimera = !vaPrimera;
                     }
@@ -357,42 +359,66 @@ public class Interfaz {
                     break;
                 case "M":
                     boolean sigo = true;
-                    System.out.println("Si en algún momento quiere parar de colocar fichas, presione 0 y el mural se rellenará con fichas vacías\n");
+                    boolean estaFicha1 = false;
+                    boolean estaFicha2 = false;
+                    boolean estaFichaV = false;
+                    System.out.println("Presione 0 para terminar");
                     while (sigo) {
-                        int fila = pedirNumero("Ingrese fila", 1, 10) - 1;
-                        int col = pedirNumero("Ingrese columna", 1, 12) - 1;
-                        int opcion = pedirNumero("Seleccione ficha 1 o 2 para la posición " + (fila + 1) + "," + (col + 1), 0, 2);
+                        int opcion = 0;
+                        int fila = pedirNumero("Ingrese fila", 0, 10) - 1;
+                        int col = 0;
+                        if(fila != -1){
+                            col = pedirNumero("Ingrese columna", 0, 12) - 1;
+                            if (col != -1){
+                                opcion = pedirNumero("Seleccione ficha 1 o 2 para la posición " + (fila + 1) + "," + (col + 1), 0, 2);
+                            }
+                        }
                         switch (opcion) {
                             case 1:
                                 diseño[fila][col] = ficha1;
+                                estaFicha1 = true;
                                 break;
                             case 2:
                                 diseño[fila][col] = ficha2;
+                                estaFicha2 = true;
                                 break;
                             default:
                                 sigo = false;
                                 for (int i = 0; i < diseño.length; i++) {
                                     for (int j = 0; j < diseño[i].length; j++) {
-                                        if (!diseño[i][j].equals(ficha1) && !diseño[i][j].equals(ficha2)) {
+                                        if (diseño[i][j] == null) {
                                             diseño[i][j] = listaFichas.get(7);
-                                            dosFichas = (ficha1.getNombre().equals("VACIA")) || (ficha2.getNombre().equals("VACIA"));
+                                            if((!ficha1.getNombre().equals("VACIA") && !ficha2.getNombre().equals("VACIA")) || (ficha1.getNombre().equals("VACIA") && !estaFicha1) || (ficha2.getNombre().equals("VACIA") && !estaFicha2)){
+                                                estaFichaV=true;
+                                            }
                                         }
                                     }
 
+                                }
+                                if(estaFicha1){
+                                    fichasDelMural.add(ficha1);
+                                }
+                                if(estaFicha2){
+                                    fichasDelMural.add(ficha2);
+                                }
+                                if(estaFichaV){
+                                    fichasDelMural.add(listaFichas.get(7));
                                 }
                                 break;
                         }
                     }
                     break;
             }
+            if(!tipoDeMural.equals("M")){
+                fichasDelMural.add(ficha1);
+                fichasDelMural.add(ficha2);
+            }
         }
         if (!error) {
             Mural mur = new Mural(nombre, autor, diseño);
             sistema.agregarMural(mur);
-            mur.agregarFicha(ficha1);
-            mur.agregarFicha(ficha2);
-            if(!dosFichas){
-                mur.agregarFicha(listaFichas.get(7));
+            for(Ficha ficha: fichasDelMural){
+                mur.agregarFicha(ficha);
             }
             System.out.println("Mural creado correctamente");
         }
