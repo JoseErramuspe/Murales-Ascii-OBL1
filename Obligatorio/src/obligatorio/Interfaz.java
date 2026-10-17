@@ -275,6 +275,7 @@ public class Interfaz {
         Diseñador autor = null;
         Ficha ficha1 = null;
         Ficha ficha2 = null;
+        String tipoDeMural = "D";
         String nombre = "null";
         Ficha[][] diseño = new Ficha[10][12];
         if (sistema.getListaDiseñadores().isEmpty()) {
@@ -313,57 +314,12 @@ public class Interfaz {
             }
         }
         if (!error) {
-            String tipoDeMural = pedirString("Ingrese el método de creación del mural (D=damero, R=random, F=alternado por filas, B=borde exterior, M=manual)").toUpperCase();
+            tipoDeMural = pedirString("Ingrese el método de creación del mural (D=damero, R=random, F=alternado por filas, B=borde exterior, M=manual)").toUpperCase();
             switch (tipoDeMural) {
-                case "D":
-                    boolean vaPrimera = true;
-                    for (int i = 0; i < 10; i++) {
-                        for (int j = 0; j < 12; j++) {
-                            if (vaPrimera) {
-                                diseño[i][j] = ficha1;
-                            }
-                            else {
-                                diseño[i][j] = ficha2;
-                                
-                            }
-                            vaPrimera = !vaPrimera;
-                        }
-                        vaPrimera = !vaPrimera;
-                    }
-                    break;
                 case "R":
-                    Random random = new Random();
-                    for (int i = 0; i < 10; i++) {
-                        for (int j = 0; j < 12; j++) {
-                            if (random.nextInt(2) == 0) {
-                                diseño[i][j] = ficha1;
-                            } else {
-                                diseño[i][j] = ficha2;
-                            }
-                        }
-                    }
-                    break;
                 case "F":
-                    for (int i = 0; i < 10; i++) {
-                        for (int j = 0; j < 12; j++) {
-                            if (i % 2 == 0) {
-                                diseño[i][j] = ficha1;
-                            } else {
-                                diseño[i][j] = ficha2;
-                            }
-                        }
-                    }
-                    break;
                 case "B":
-                    for (int i = 0; i < 10; i++) {
-                        for (int j = 0; j < 12; j++) {
-                            if (i == 0 || i == 9 || j == 0 || j == 11) {
-                                diseño[i][j] = ficha1;
-                            } else {
-                                diseño[i][j] = ficha2;
-                            }
-                        }
-                    }
+                case "D":
                     break;
                 case "M":
                     boolean sigo = true;
@@ -373,12 +329,12 @@ public class Interfaz {
                     System.out.println("Presione 0 para terminar");
                     while (sigo) {
                         int opcion = 0;
-                        int fila = pedirNumero("Ingrese fila", 1, 10) - 1;
+                        int fila = pedirNumero("Ingrese fila o 0 para terminar", 0, 10) - 1;
                         int col = 0;
                         if(fila != -1){
-                            col = pedirNumero("Ingrese columna", 1, 12) - 1;
+                            col = pedirNumero("Ingrese columna o 0 para terminar", 0, 12) - 1;
                             if (col != -1){
-                                opcion = pedirNumero("Seleccione ficha 1 o 2 para la posición " + (fila + 1) + "," + (col + 1), 0, 2);
+                                opcion = pedirNumero("Seleccione ficha 1 o 2 para la posición {" + (fila + 1) + "," + (col + 1)  + "} o 0 para terminar", 0, 2);
                             }
                         }
                         switch (opcion) {
@@ -416,6 +372,10 @@ public class Interfaz {
                         }
                     }
                     break;
+                default:
+                    System.out.println("ERROR. Seleccione método de creación valido");
+                    error = true;
+                    break;
             }
             if(!tipoDeMural.equals("M")){
                 fichasDelMural.add(ficha1);
@@ -423,11 +383,8 @@ public class Interfaz {
             }
         }
         if (!error) {
-            Mural mur = new Mural(nombre, autor, diseño);
+            Mural mur = new Mural(nombre, autor, diseño, ficha1, ficha2, tipoDeMural, fichasDelMural);
             sistema.agregarMural(mur);
-            for(Ficha ficha: fichasDelMural){
-                mur.agregarFicha(ficha);
-            }
             System.out.println("Mural creado correctamente");
         }
         System.out.println("Presione ENTER para continuar...\n");

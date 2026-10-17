@@ -10,12 +10,69 @@ public class Mural {
     private Ficha[][] diseñoActual;
     private ArrayList<Ficha> listaFichas;
 
-    public Mural(String nombre, Diseñador diseñador, Ficha[][] diseño) {
+    public Mural(String nombre, Diseñador diseñador, Ficha[][] diseño, Ficha ficha1, Ficha ficha2, String tipoDeMural, ArrayList<Ficha> fichasDelMural) {
         this.nombre = nombre;
         this.diseñador = diseñador;
         this.diseñoOriginal = diseño.clone();
         this.diseñoActual = diseño.clone();
         this.listaFichas = new ArrayList<>();
+        for (Ficha ficha : fichasDelMural) {
+            this.agregarFicha(ficha);
+        }
+        switch (tipoDeMural) {
+            case "R":
+                Random random = new Random();
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 12; j++) {
+                        if (random.nextInt(2) == 0) {
+                            diseño[i][j] = ficha1;
+                        } else {
+                            diseño[i][j] = ficha2;
+                        }
+                    }
+                }
+                break;
+            case "F":
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 12; j++) {
+                        if (i % 2 == 0) {
+                            diseño[i][j] = ficha1;
+                        } else {
+                            diseño[i][j] = ficha2;
+                        }
+                    }
+                }
+                break;
+            case "B":
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 12; j++) {
+                        if (i == 0 || i == 9 || j == 0 || j == 11) {
+                            diseño[i][j] = ficha1;
+                        } else {
+                            diseño[i][j] = ficha2;
+                        }
+                    }
+                }
+                break;
+            case "M":
+                break;
+            default:
+            case "D":
+                boolean vaPrimera = true;
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 12; j++) {
+                        if (vaPrimera) {
+                            diseño[i][j] = ficha1;
+                        } else {
+                            diseño[i][j] = ficha2;
+
+                        }
+                        vaPrimera = !vaPrimera;
+                    }
+                    vaPrimera = !vaPrimera;
+                }
+                break;
+        }
     }
 
     public Diseñador getDiseñador() {
@@ -53,8 +110,8 @@ public class Mural {
         }
     }
 
-    public HashMap<Mural,int[]> compararSimilitud(Sistema sistema, int filaInicial, int columnaInicial, int filaLargo, int columnaLargo) {
-        HashMap<Mural,int[]> muralesSimilares = new HashMap<>();
+    public HashMap<Mural, int[]> compararSimilitud(Sistema sistema, int filaInicial, int columnaInicial, int filaLargo, int columnaLargo) {
+        HashMap<Mural, int[]> muralesSimilares = new HashMap<>();
         if (sistema.getListaMurales().size() >= 2) {
             for (Mural muralOtro : sistema.getListaMurales()) {
                 if (!muralOtro.equals(this)) {
