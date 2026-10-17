@@ -26,7 +26,7 @@ RF05: Las fichas deben ser creadas y almacenadas en strings de length 9 y 25 res
 
 RF06: El sistema debe permitir la creación de murales **(10Fx12C)**, con diseñador (autor), nombre **único**, 2 fichas **iniciales** (pueden agregarse más) correspondientes y tipo de formato (D damero, R random, F alterado por filas, B borde exterior, M manual) 🟢
 
-RF07: Al finalizar la creación del mural se deberá mostrar el mismo en tamaño grande y chico
+RF07: Al finalizar la creación del mural se deberá mostrar el mismo en tamaño grande y chico 🟢
 
 RF08: El sistema debe permitir la modificación de murales, eligiendo el mismo de una lista dada 🟡
 
@@ -40,7 +40,7 @@ RF12: El mural podrá ser modificado restaurandolo a su estado original 🟡
 
 RF13: El sistema deberá permitir elegir un diseñador para visualizar sus murales 🟢
 
-RF14: El sistema deberá permitir visualizar una lista de los diseñadores con todos sus datos, incluido la cantidad de fichas y colores que utilizó cada uno 🟡
+RF14: El sistema deberá permitir visualizar una lista de los diseñadores con todos sus datos, incluido la cantidad de fichas y colores que utilizó cada uno 🟢
 
 RF15: El sistema deberá permitir saber si, dado un mural y un área rectangular de dicho mural, hay otros murales con un área idéntica a la seleccionada, cuáles son y en dónde está (si hay más de un área idéntica, se devuelve una de ellas) 🟢
 
