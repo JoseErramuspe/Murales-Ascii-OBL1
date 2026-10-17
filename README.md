@@ -16,15 +16,15 @@
 
 RF01: El sistema deberá permitir la visualización de los nombres y numeros de estudiante de los autores 🟢
 
-RF02: El sistema deberá permitir la creación de diseñadores, con nombre **único**, dirección y mail 
+RF02: El sistema deberá permitir la creación de diseñadores, con nombre **único**, dirección y mail 🟢
 
-RF03: El sistema deberá permitir la creación de fichas, con nombre y color (R rojo, A azul, B blanco, N negro, M amarillo, V verde, G magenta, C celeste) 
+RF03: El sistema deberá permitir la creación de fichas, con nombre y color (R rojo, A azul, B blanco, N negro, M amarillo, V verde, G magenta, C celeste) 🟢
 
-RF04: Las fichas deberán tener dos tipos de diseño, 3x3 y 5x5
+RF04: Las fichas deberán tener dos tipos de diseño, 3x3 y 5x5 🟢
 
-RF05: Las fichas deben ser creadas y almacenadas en strings de length 9 y 25 respectivamente
+RF05: Las fichas deben ser creadas y almacenadas en strings de length 9 y 25 respectivamente 🟢
 
-RF06: El sistema debe permitir la creación de murales **(10Fx12C)**, con diseñador (autor), nombre **único**, 2 fichas **iniciales** (pueden agregarse más) correspondientes y tipo de formato (D damero, R random, F alterado por filas, B borde exterior, M manual)
+RF06: El sistema debe permitir la creación de murales **(10Fx12C)**, con diseñador (autor), nombre **único**, 2 fichas **iniciales** (pueden agregarse más) correspondientes y tipo de formato (D damero, R random, F alterado por filas, B borde exterior, M manual) 🟢
 
 RF07: Al finalizar la creación del mural se deberá mostrar el mismo en tamaño grande y chico
 
@@ -38,20 +38,20 @@ RF11: El mural podrá ser modificado reemplazando todas las apariciones de una f
 
 RF12: El mural podrá ser modificado restaurandolo a su estado original 🟡
 
-RF13: El sistema deberá permitir elegir un diseñador para visualizar sus murales
+RF13: El sistema deberá permitir elegir un diseñador para visualizar sus murales 🟢
 
 RF14: El sistema deberá permitir visualizar una lista de los diseñadores con todos sus datos, incluido la cantidad de fichas y colores que utilizó cada uno 🟡
 
-RF15: El sistema deberá permitir saber si, dado un mural y un área rectangular de dicho mural, hay otros murales con un área idéntica a la seleccionada, cuáles son y en dónde está (si hay más de un área idéntica, se devuelve una de ellas) 
+RF15: El sistema deberá permitir saber si, dado un mural y un área rectangular de dicho mural, hay otros murales con un área idéntica a la seleccionada, cuáles son y en dónde está (si hay más de un área idéntica, se devuelve una de ellas) 🟢
 
-RF16: El sistema deberá permitir visualizar todas las fichas registradas
+RF16: El sistema deberá permitir visualizar todas las fichas registradas 🟢
 
 TBF
 
-RNF01: Los nombres de los diseñadores deben ser únicos
+RNF01: Los nombres de los diseñadores deben ser únicos 🟢
 
-RNF02: Los nombres de las fichas deben ser en mayúsculas
+RNF02: Los nombres de las fichas deben ser en mayúsculas 🟢
 
-RNF03: Los murales deben ser almacenados como matrices rectangulares de 10 filas por 12 columnas
+RNF03: Los murales deben ser almacenados como matrices rectangulares de 10 filas por 12 columnas 🟢
 
 TBF
