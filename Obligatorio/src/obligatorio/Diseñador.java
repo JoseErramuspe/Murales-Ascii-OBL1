@@ -36,7 +36,7 @@ public class Diseñador implements Comparable<Diseñador> {
     }
     
     public int cantidadFichasUsadas(Sistema sistema) {
-        ArrayList<Ficha> listaFichas = new ArrayList<Ficha>();
+        ArrayList<Ficha> listaFichas = new ArrayList<>();
         for (Mural mur : sistema.getListaMurales()) {
             if (mur.getDiseñador().equals(this)) {
                 for (Ficha fich : mur.getListaFichas()) {
@@ -50,7 +50,7 @@ public class Diseñador implements Comparable<Diseñador> {
     }
     
     public int cantidadColoresUsados(Sistema sistema) {
-        ArrayList<String> listaColores = new ArrayList<String>();
+        ArrayList<String> listaColores = new ArrayList<>();
         for (Mural mur : sistema.getListaMurales()) {
             if (mur.getDiseñador().equals(this)) {
                 for (Ficha fich : mur.getListaFichas()) {
@@ -67,7 +67,7 @@ public class Diseñador implements Comparable<Diseñador> {
     public String toString() {
         return "Nombre: " + nombre + ", Mail: " + mail + ", Dirección: " + direccion;
     }
-
+    
     @Override
     public int compareTo(Diseñador dis) {
         return this.getNombre().compareToIgnoreCase(dis.getNombre());
