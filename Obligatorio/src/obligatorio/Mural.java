@@ -13,8 +13,6 @@ public class Mural {
     public Mural(String nombre, Diseñador diseñador, Ficha[][] diseño, Ficha ficha1, Ficha ficha2, String tipoDeMural, ArrayList<Ficha> fichasDelMural) {
         this.nombre = nombre;
         this.diseñador = diseñador;
-        this.diseñoOriginal = diseño.clone();
-        this.diseñoActual = diseño.clone();
         this.listaFichas = new ArrayList<>();
         for (Ficha ficha : fichasDelMural) {
             this.agregarFicha(ficha);
@@ -73,6 +71,8 @@ public class Mural {
                 }
                 break;
         }
+        this.diseñoOriginal = clonar(diseño);
+        this.diseñoActual = clonar(diseño);
     }
 
     public Diseñador getDiseñador() {
@@ -92,7 +92,7 @@ public class Mural {
     }
 
     public void setDiseñoActual(Ficha[][] diseñoActual) {
-        this.diseñoActual = diseñoActual;
+        this.diseñoActual = clonar(diseñoActual);
     }
 
     public ArrayList<Ficha> getListaFichas() {
@@ -147,5 +147,13 @@ public class Mural {
     @Override
     public String toString() {
         return nombre;
+    }
+    
+    public Ficha[][] clonar(Ficha[][] diseño){
+        Ficha[][] diseñoNuevo = new Ficha[10][12];
+        for (int i = 0; i < 10; i++) {
+            diseñoNuevo[i]=diseño[i].clone();
+        }
+        return diseñoNuevo;
     }
 }
