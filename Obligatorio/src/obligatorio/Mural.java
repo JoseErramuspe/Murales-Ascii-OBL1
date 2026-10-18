@@ -109,6 +109,31 @@ public class Mural {
             this.listaFichas.add(actual);
         }
     }
+    
+    public void cambiarPosicionFicha(Ficha original, Ficha actual){
+        int cant = 0;
+        for (int i = 0; i < 10 && cant<2; i++) {
+            for (int j = 0; j < 12 && cant<2; j++) {
+                if(this.diseñoActual[i][j].equals(original)){
+                    cant++;
+                }
+            }
+        }
+        if(cant==1 && !original.equals(actual)){
+            this.listaFichas.remove(original);
+        }
+        cant = 0;
+        for (int i = 0; i < 10 && cant<2; i++) {
+            for (int j = 0; j < 12 && cant<2; j++) {
+                if(this.diseñoActual[i][j].equals(actual)){
+                    cant++;
+                }
+            }
+        }
+        if(cant==0){
+            this.listaFichas.add(actual);
+        }
+    }
 
     public HashMap<Mural, int[]> compararSimilitud(Sistema sistema, int filaInicial, int columnaInicial, int filaLargo, int columnaLargo) {
         HashMap<Mural, int[]> muralesSimilares = new HashMap<>();
@@ -149,11 +174,24 @@ public class Mural {
         return nombre;
     }
     
-    public Ficha[][] clonar(Ficha[][] diseño){
+    public static Ficha[][] clonar(Ficha[][] diseño){
         Ficha[][] diseñoNuevo = new Ficha[10][12];
         for (int i = 0; i < 10; i++) {
             diseñoNuevo[i]=diseño[i].clone();
         }
         return diseñoNuevo;
+    }
+    
+    public void restaurarListaFichas(){
+        ArrayList<Ficha> listaFichasOri = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 12; j++) {
+                if(!listaFichasOri.contains(this.diseñoOriginal[i][j])){
+                    listaFichasOri.add(this.diseñoOriginal[i][j]);
+                }
+                
+            }
+        }
+        this.listaFichas = listaFichasOri;
     }
 }
