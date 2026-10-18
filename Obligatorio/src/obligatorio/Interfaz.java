@@ -135,7 +135,7 @@ public class Interfaz {
                     case 1:
                         int fila = pedirNumero("Elija número de fila", 1, 10) - 1;
                         int col = pedirNumero("Elija número de columna", 1, 12) - 1;
-                        diseñoNuevo = modificarPosicion(sistema, diseñoNuevo, fila, col);
+                        diseñoNuevo = modificarPosicion(sistema, mural, diseñoNuevo, fila, col);
                         break;
                     case 2:
                         Ficha original = elegirFicha("Elija la ficha a quitar", mural.getListaFichas());
@@ -145,6 +145,7 @@ public class Interfaz {
                         break;
                     case 3:
                         diseñoNuevo = mural.getDiseñoOriginal();
+                        mural.restaurarListaFichas();
                         break;
                 }
                 if (opcion != 0) {
@@ -162,8 +163,12 @@ public class Interfaz {
         }
     }
 
-    public static Ficha[][] modificarPosicion(Sistema sistema, Ficha[][] diseño, int fila, int col) {
-        diseño[fila][col] = elegirFicha("Elija la ficha a colocar", sistema.getListaFichas());
+    public static Ficha[][] modificarPosicion(Sistema sistema, Mural mural, Ficha[][] diseño, int fila, int col) {
+        Ficha original = diseño[fila][col];
+        Ficha actual = elegirFicha("Elija la ficha a colocar", sistema.getListaFichas());
+        mural.cambiarPosicionFicha(original, actual);
+        diseño[fila][col] = actual;
+        System.out.println(mural.getListaFichas());
         return diseño;
     }
 
