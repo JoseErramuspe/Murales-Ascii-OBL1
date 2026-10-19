@@ -3,6 +3,11 @@ package obligatorio;
 public class Obligatorio {
 
     public static void main(String[] args) {
+        try {
+            System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8.name()));
+        } catch (UnsupportedEncodingException ex) {
+            System.getLogger(Obligatorio.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
         Sistema sistema = new Sistema();
         
         sistema.agregarFicha(new Ficha("SOL", "\\|/-*-/|\\", "..|...\\|/.--*--./|\\...|..", "M"));
