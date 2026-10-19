@@ -1,0 +1,43 @@
+@startuml
+
+class Sistema {
+   + Sistema()
+   - listaFichas : ArrayList<Ficha>
+   - listaMurales : ArrayList<Mural>
+   - listaDiseñadores : ArrayList<Diseñador>
+   + agregarFicha(nombre: String, diseñoChico: String, diseñoGrande: String, color: String)
+   + agregarMural(diseñador: Diseñador, ficha1 : Ficha, ficha2 : Ficha, patron : String)
+   + agregarDiseñador(nombre: String, direccion: String, mail: String)
+}
+
+class Ficha {
+   + Ficha(nombre: String, diseñoChico: String, diseñoGrande: String, color: String)
+   - nombre : String
+   - diseñoChico : String
+   - diseñoGrande : String
+   - color : String
+}
+
+class Mural {
+   + Mural(ficha1 : Ficha, ficha2: Ficha, patron : String)
+   - diseñoOriginal : Ficha[12][10]
+   - diseñoActual : Ficha[12][10]
+   + cantidadColores() : int
+}
+
+class Diseñador {
+   + Diseñador(nombre: String, direccion: String, mail: String)
+   - nombre : String
+   - direccion : String
+   - mail : String
+   - listaMurales : ArrayList<Mural>
+   + cantidadColoresUsados() : int
+   + cantidadFichasUsadas() : int
+}
+
+Ficha o-- Sistema
+Mural o-- Sistema
+Diseñador o-- Sistema
+Mural o-- Ficha
+Diseñador o-- Mural
+@enduml
