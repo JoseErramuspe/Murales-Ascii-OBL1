@@ -85,14 +85,8 @@ public class Interfaz {
 
     public static String pedirString(String mensaje) {
         Scanner in = new Scanner(System.in);
-        String ret = "";
         System.out.println(mensaje);
-        try {
-            ret = in.nextLine();
-        } catch (InputMismatchException e) {
-            System.out.println("\nERROR. El string ingresado es incorrecto");
-            in.nextLine();
-        }
+        String ret = in.nextLine();
         return ret;
     }
 
