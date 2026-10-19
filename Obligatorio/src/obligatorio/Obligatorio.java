@@ -1,5 +1,9 @@
 package obligatorio;
 
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+
 public class Obligatorio {
 
     public static void main(String[] args) {
