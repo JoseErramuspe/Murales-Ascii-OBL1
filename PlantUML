@@ -16,18 +16,27 @@ class Sistema {
 }
 
 class Ficha {
-   + Ficha(nombre: String, diseñoChico: String, diseñoGrande: String, color: String)
+   + Ficha(String, String, String, String)
    - nombre : String
    - diseñoChico : String
    - diseñoGrande : String
    - color : String
+   + puntosAEspacios(String) : String
 }
 
 class Mural {
-   + Mural(ficha1 : Ficha, ficha2: Ficha, patron : String)
-   - diseñoOriginal : Ficha[12][10]
-   - diseñoActual : Ficha[12][10]
-   + cantidadColores() : int
+   + Mural(String, Diseñador, Ficha[][], Ficha, Ficha, String, ArrayList<Ficha>)
+   - nombre : String
+   - diseñador : Diseñador
+   - diseñoOriginal : Ficha[][]
+   - diseñoActual : Ficha[][]
+   - listaFichas : ArrayList<Ficha>
+   + agregarFicha(Ficha) : void
+   + modificarListaFichas(Ficha, Ficha) : void
+   + cambiarPosicionFicha(Ficha, Ficha) : void
+   + compararSimilitud(Sistema, int, int, int, int) : HashMap<Mural, int[]>
+   + clonar(Ficha[][]) : Ficha[][]
+   + restaurarListaFichas() : void
 }
 
 class Diseñador {
