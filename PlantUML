@@ -1,61 +1,66 @@
-https://www.plantuml.com/plantuml/uml/dLHBZjim3Dtd55ewg7C1Op2OGVhfOgOja7OLPC58Qa905WDABbeKFLJFq8irfgEHFqOJT6DPJu-VHr9w214uDhLRBBI34DG6GxGrg9yBfTIhj2sMxNQb79xvRr4V8QXAFJB3ZwSpT2VGVO_pt30uEoG9rYUznc3__0P3F6BcW_jn6hA50zi3i4GjDf7H7qerlouhzOtG3EmaaI87APLuIikSfOPwZyaIVIoL_CvvptwB6rAotrjf7wZUinrP2dDFv2puAJc9lyQJFAUyNwdXuYUr-wQATXtqubrL5xG3ZIYWzH4rpH-zO_1cRAR94MTCKZarFb9uV1DEe952Kf1PBmf4OLBGbrkgIO-tk-rkljtbP9ol2mKZQUSe0waV6G_emQagnnuG7dLi9iVNRzdq2iXtgVfpLPF1hwY1dxAp8kiM-dI-Fr50ZUI5yIywrITWu0tMw30sfhZSq5AXZwDFQ_eUml4PJjqR8EXsTr6Y7NdWugK6oq51XC8sH6XuA2Pbb0SXzo5DGqQA_nbcjhgjnWYl0Ls6RdppfCO-eW5puQtPWg6pZgejnv3IIVmIm8ZG6SQQ7B4L2eqeaRhKYcLECZVDVgRUqzS5Rqie8TLgHUcnNKYU0oJRpH1fjPA-3MXtPr2E5m_McwPsVm40
+https://www.plantuml.com/plantuml/png/bLJDJlCm4BpdANnCrVO5eazL8trmubPUO9kOQeL_8jj1GeXt9yQxnJQDAaxWoIopipFYw0EuC6lL30gy5oVqGMeG7uqGOilFTXEVUw5meVS6DIZfHITwv-3zQG7_9V2GqHv1eq8eQGJcl0SzEUah7e4vhn_jDA0rjJ31EVM_DN23ol0XUNFoig0ENDgzFGM7vh8JzKyqOICwyMPnh0R9pShaoX1PQxC_VsU2BRPfqHt9tfbYjoq9aj8lDs1cbMlGBoK9zMHT0FTpsVPA-6oeEsazhixzg_A3ocMiFZifEa8JEDWHBxO2WzIJTA2b2VMdIVe8eGdfBNs0iIHjnG3wZ4iItzzk6A43ivCwvhmOjAKSPmNF6E8fgurWaafXlWEDA2B7NQ_I51PBSrd-U3KtX_m88pevnDYkj2mqofiLwxAn-qeMKjOTnPp05xfRnqESOKmA75f_Om6k52-mtjlyuZ9zZ6GJedrYKq5miht2A5kquHMLzGIKzQ8GgCBxlUL_VGrPAJ0IAp0-N06ocJNcWUvNOYH9qmIomQCquwpL5m00
 @startuml
-
 class Sistema {
    + Sistema()
-   - listaFichas : ArrayList<Ficha>
-   - listaMurales : ArrayList<Mural>
-   - listaDiseñadores : ArrayList<Diseñador>
-   + Sistema()
-   + agregarFicha(String, String, String, String): void
-   + agregarMural(Diseñador, Ficha, Ficha, String): void
-   + cambiarMural(int, Mural): void
-   + agregarDiseñador(String, String, String): void
-   + existeNombreDiseñador(String): boolean
-   + existeNombreFicha(String): boolean
-   + existeNombreMural(String): boolean
+   - listaAnimales : ArrayList<Animal>
+   - listaFamilias : ArrayList<Familia>
+   - listaEmpresas : ArrayList<Empresa>
+   - listaAdopciones : ArrayList<Adopcion>
+   - listaDonaciones : ArrayList<Donacion>
+   + registrarAnimal(String, String, String, int) : void
+   + registrarFamilia(String, String, String) : void
+   + registrarEmpresa(String, int, String) : void
+   + registrarAdopcion(Animal,Familia, String) : void
+   + registrarDonacion(Empresa, int, int) : void
+   + anularAdopcion(Adopcion) : void
+   + importarDonaciones() : void
 }
 
-class Ficha {
-   + Ficha(String, String, String, String)
+class Animal {
+   + Animal(String, String, String, int, String)
    - nombre : String
-   - diseñoChico : String
-   - diseñoGrande : String
-   - color : String
-   + puntosAEspacios(String) : String
+   - codigo : String
+   - temperamento : String
+   - peso : int
+   - estado : String
+   + cambiarEstado() : void
 }
 
-class Mural {
-   + Mural(String, Diseñador, Ficha[][], Ficha, Ficha, String, ArrayList<Ficha>, Sistema)
-   - nombre : String
-   - diseñador : Diseñador
-   - diseñoOriginal : Ficha[][]
-   - diseñoActual : Ficha[][]
-   - listaFichas : ArrayList<Ficha>
-   + agregarFicha(Ficha) : void
-   + modificarListaFichas(Ficha, Ficha) : void
-   + cambiarPosicionFicha(Ficha, Ficha) : void
-   + compararSimilitud(Sistema, int, int, int, int) : HashMap<Mural, int[]>
-   + clonar(Ficha[][]) : Ficha[][]
-   + restaurarListaFichas() : void
+class Familia {
+   + Familia(String, String, int)
+   - cedulaTitular : String
+   - apellido : String
+   - celular : int
 }
 
-class Diseñador {
-   + Diseñador(String, String, String)
+class Empresa {
+   + Empresa(String, int, String)
    - nombre : String
+   - rut : int
    - direccion : String
-   - mail : String
-   - listaMurales : ArrayList<Mural>
-   + cantidadMuralesCreados(): int
-   + cantidadFichasUsadas() : int
-   + cantidadColoresUsados() : int
-   + toString(): String
-   + compareTo(Diseñador): int
 }
 
-Ficha o-- Sistema
-Mural o-- Sistema
-Diseñador o-- Sistema
-Mural o-- Ficha
-Diseñador o-- Mural
+class Adopcion {
+   + Adopcion(Animal, Familia, String)
+   - animal : Animal
+   - familia : Familia
+   - comentarios : String
+}
+
+class Donacion {
+   + Donacion(Empresa, int, int, int)
+   - empresaDonante : Empresa
+   - tipoAlimento : int
+   - kilos : int
+   - codigo : int
+}
+
+Animal --o Sistema
+Familia --o Sistema
+Empresa --o Sistema
+Adopcion --o Sistema
+Donacion --o Sistema
+Adopcion --> Animal
+Adopcion --> Familia
+Donacion --> Empresa
 @enduml
